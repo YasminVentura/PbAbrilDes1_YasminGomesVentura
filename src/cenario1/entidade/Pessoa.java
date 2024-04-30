@@ -29,12 +29,12 @@ public class Pessoa {
     }
 
     public void imprimirArvoreGenealogica(int nivel) {
-        StringBuilder prefix = new StringBuilder();
+        StringBuilder esp = new StringBuilder();
         for (int i = 0; i < nivel; i++) {
-            prefix.append("    ");
+            esp.append("    ");
         }
-        System.out.println(prefix.toString() + nome
-                + (conjuge != null ? " - Casada com: " + conjuge.nome : "") + " - Filhos:");
+        String status = conjuge != null ? "Casado com: " + conjuge.nome : "Solteiro";
+        System.out.println(esp.toString() + nome + " - " + status + " - Filhos:");
         if (!filhos.isEmpty()) {
             for (Pessoa filho : filhos) {
                 filho.imprimirArvoreGenealogica(nivel + 1);
