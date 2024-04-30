@@ -19,7 +19,6 @@ public class Pessoa {
         this.filhos = new ArrayList<>();
     }
 
-
     public void adicionarConjuge(Pessoa conjuge) {
         this.conjuge = conjuge;
     }
@@ -29,17 +28,16 @@ public class Pessoa {
     }
 
     public void imprimirArvoreGenealogica(int nivel) {
-        StringBuilder esp = new StringBuilder();
-        for (int i = 0; i < nivel; i++) {
-            esp.append("    ");
-        }
+
         String status = conjuge != null ? "Casado com: " + conjuge.nome : "Solteiro";
-        System.out.println(esp.toString() + nome + " - " + status + " - Filhos:");
+        System.out.println("    ".repeat(Math.max(0, nivel)) + nome + " - " + status );
+
         if (!filhos.isEmpty()) {
             for (Pessoa filho : filhos) {
                 filho.imprimirArvoreGenealogica(nivel + 1);
             }
         }
+
     }
 }
 

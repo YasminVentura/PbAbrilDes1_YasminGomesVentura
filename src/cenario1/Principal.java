@@ -8,7 +8,7 @@ public class Principal {
         Pessoa wilhelm = new Pessoa("Wilhelm");
         lily.adicionarConjuge(wilhelm);
 
-        Pessoa opa = new Pessoa("Opa", lily);
+        Pessoa opa = new Pessoa("Opa");
         Pessoa oma = new Pessoa("Oma");
         opa.adicionarConjuge(oma);
         lily.adicionarFilho(opa);
@@ -21,6 +21,8 @@ public class Principal {
         Pessoa sonia = new Pessoa("Sonia");
         reinhold.adicionarConjuge(sonia);
         reinhold.adicionarFilho(new Pessoa("Christian"));
+        reinhold.adicionarFilho(new Pessoa("Gabrielle"));
+        reinhold.adicionarFilho(new Pessoa("Sabine"));
 
         Pessoa christian = reinhold.filhos.get(0);
         Pessoa monica = new Pessoa("Monica");
