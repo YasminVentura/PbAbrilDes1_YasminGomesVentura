@@ -1,12 +1,13 @@
 package cenario2.entidades;
 
-public class Pessoa {
-    private String nome;
-    private Integer idade;
+public abstract class Pessoa {
+    String nome;
+    int idade;
 
-    public Pessoa(String nome, Integer idade) {
+    public Pessoa(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
     }
 
+    public abstract boolean podeEmbarcarSozinha();
 }

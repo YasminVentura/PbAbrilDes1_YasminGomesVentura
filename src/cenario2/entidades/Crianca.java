@@ -1,14 +1,19 @@
 package cenario2.entidades;
 
-public class Crianca extends Pessoa{
-    private Adulto responsavel;
+public class Crianca extends Pessoa {
+    Pessoa responsavel;
 
-    public Crianca(String nome, Integer idade) {
+    public Crianca(String nome, int idade) {
         super(nome, idade);
     }
 
-    public Crianca(String nome, Integer idade, Adulto responsavel) {
+    public Crianca(String nome, int idade, Pessoa responsavel) {
         super(nome, idade);
         this.responsavel = responsavel;
+    }
+
+    @Override
+    public boolean podeEmbarcarSozinha() {
+        return idade >= 12;
     }
 }
