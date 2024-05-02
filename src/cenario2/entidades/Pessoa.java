@@ -9,5 +9,11 @@ public abstract class Pessoa {
         this.idade = idade;
     }
 
-    public abstract boolean podeEmbarcarSozinha();
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
 }

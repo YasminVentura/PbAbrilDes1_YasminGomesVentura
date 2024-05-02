@@ -1,32 +1,38 @@
 package cenario2.entidades;
 
 public class Gondola {
-    int numero;
-    Pessoa assento1;
-    Pessoa assento2;
+    private int numero;
+    private Pessoa[] assentos;
 
     public Gondola(int numero) {
         this.numero = numero;
+        this.assentos = new Pessoa[2];
     }
 
-    boolean isVazia() {
-        return assento1 == null && assento2 == null;
+    public boolean vazia() {
+        return assentos[0] == null && assentos[1] == null;
     }
 
-    void embarcar(Pessoa pessoa) {
-        if (assento1 == null) {
-            assento1 = pessoa;
-        } else if (assento2 == null) {
-            assento2 = pessoa;
+    public boolean cheia() {
+        return assentos[0] != null && assentos[1] != null;
+    }
+
+    public void embarcar(Pessoa pessoa) {
+        for (int i = 0; i < assentos.length; i++) {
+            if (assentos[i] == null) {
+                assentos[i] = pessoa;
+                break;
+            }
         }
     }
 
     @Override
     public String toString() {
-        if (assento1 != null && assento2 != null) {
-            return numero + " " + assento1.nome + " e " + assento2.nome;
-        } else {
+        if (vazia()) {
             return numero + " (Vazio)";
+        } else {
+            return numero + " " + assentos[0].getNome()
+                    + (assentos[1] != null ? " e " + assentos[1].getNome() : "");
         }
     }
 }

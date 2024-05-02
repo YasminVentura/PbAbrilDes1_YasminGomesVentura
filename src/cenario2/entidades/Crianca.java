@@ -12,8 +12,7 @@ public class Crianca extends Pessoa {
         this.responsavel = responsavel;
     }
 
-    @Override
-    public boolean podeEmbarcarSozinha() {
-        return idade >= 12;
+    public Pessoa getResponsavel() {
+        return responsavel;
     }
 }

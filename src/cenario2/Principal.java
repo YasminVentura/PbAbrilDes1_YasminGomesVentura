@@ -6,7 +6,7 @@ import cenario2.entidades.RodaGigante;
 
 public class Principal {
     public static void main(String[] args) {
-        RodaGigante rodaGigante = new RodaGigante(18);
+        RodaGigante rodaGigante = new RodaGigante();
 
         Adulto paulo = new Adulto("Paulo", 42);
         Crianca joao = new Crianca("João", 5, paulo);
@@ -14,11 +14,11 @@ public class Principal {
         Crianca pedro = new Crianca("Pedro", 13);
         Crianca henrique = new Crianca("Henrique", 10);
 
-        rodaGigante.embarcar(joao, maria);
-        rodaGigante.embarcar(joao, paulo);
-        rodaGigante.embarcar(maria);
-        rodaGigante.embarcar(pedro);
-        rodaGigante.embarcar(henrique);
+        rodaGigante.embarcar(2, joao, maria);
+        rodaGigante.embarcar(2, joao, paulo);
+        rodaGigante.embarcar(3, maria);
+        rodaGigante.embarcar(13, pedro);
+        rodaGigante.embarcar(16, henrique);
 
         rodaGigante.status();
     }

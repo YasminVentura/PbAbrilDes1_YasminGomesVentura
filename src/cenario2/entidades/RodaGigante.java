@@ -1,48 +1,69 @@
 package cenario2.entidades;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RodaGigante {
-    List<Gondola> gondolas;
+    private Gondola[] gondolas;
+
+    public RodaGigante() {
+        this(18);
+    }
 
     public RodaGigante(int numGondolas) {
-        gondolas = new ArrayList<>();
+        gondolas = new Gondola[numGondolas];
         for (int i = 0; i < numGondolas; i++) {
-            gondolas.add(new Gondola(i + 1));
+            gondolas[i] = new Gondola(i + 1);
         }
     }
 
-    public void embarcar(Pessoa... pessoas) {
+    public void embarcar(int numGondola, Pessoa... pessoas) {
+        if (numGondola <= 0 || numGondola > gondolas.length) {
+            System.out.println("ERRO: Gôndola inválida.");
+            return;
+        }
+
+        Gondola gondola = gondolas[numGondola - 1];
+
+        if (gondola.cheia()) {
+            System.out.println("ERRO: A gôndola está cheia.");
+            return;
+        }
+
         for (Pessoa pessoa : pessoas) {
-            Gondola gondolaLivre = procurarGondolaLivre();
-            if (gondolaLivre != null) {
-                if (pessoa.podeEmbarcarSozinha()) {
-                    gondolaLivre.embarcar(pessoa);
-                } else {
-                    Crianca crianca = (Crianca) pessoa;
-                    if (crianca.responsavel == null) {
-                        System.out.println("ERRO: " + crianca.nome + " tem menos de 12 anos e o responsável não está presente");
-                        continue;
+
+            if (pessoa instanceof Crianca) {
+                Crianca crianca = (Crianca) pessoa;
+
+                if (crianca.getIdade() < 12) {
+
+                    if (crianca.getResponsavel() == null) {
+                        System.out.println("ERRO: " + crianca.getNome() + " não pode entrar sem um responsável.");
+                        return;
                     }
-                    gondolaLivre.embarcar(pessoa);
+
+                    boolean responsavelPresente = false;
+
+                    for (Pessoa p : pessoas) {
+                        if (p.equals(crianca.getResponsavel())) {
+                            responsavelPresente = true;
+                            break;
+                        }
+                    }
+
+                    if (!responsavelPresente) {
+                        System.out.println("ERRO: " + crianca.getNome() + " precisa estar acompanhado pelo responsável.");
+                        return;
+                    }
+
                 }
-            } else {
-                System.out.println("ERRO: Não há gôndolas disponíveis.");
+
             }
+            gondola.embarcar(pessoa);
+
         }
     }
 
-    private Gondola procurarGondolaLivre() {
-        for (Gondola gondola : gondolas) {
-            if (gondola.isVazia()) {
-                return gondola;
-            }
-        }
-        return null;
-    }
 
     public void status() {
+        System.out.println();
         System.out.println("Gondola Status");
         System.out.println("----------------------");
         for (Gondola gondola : gondolas) {
