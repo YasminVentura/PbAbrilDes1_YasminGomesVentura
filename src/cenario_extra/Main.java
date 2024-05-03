@@ -8,13 +8,20 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Digite a mensagem: ");
-        String mensagem = sc.nextLine();
+        String continuar;
 
-        Emoji emoji = new Emoji();
-        String sentimento = emoji.sentimentos(mensagem);
+        do {
+            System.out.print("Digite a mensagem: ");
+            String mensagem = sc.nextLine();
 
-        System.out.println(sentimento);
+            Emoji emoji = new Emoji();
+            String sentimento = emoji.sentimentos(mensagem);
+
+            System.out.println(sentimento);
+
+            System.out.print("Deseja inserir outra mensagem? (s/n)  ");
+            continuar = sc.nextLine();
+        } while (continuar.equalsIgnoreCase("s"));
 
         sc.close();
     }
